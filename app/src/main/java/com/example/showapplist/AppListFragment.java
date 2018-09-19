@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.content.Intent;
+import android.widget.Toast;
 
 public class AppListFragment extends ListFragment {
 
@@ -34,7 +36,13 @@ public class AppListFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		//
-        startActivity(appList.get(position).appIntent);
+		Intent appIntent = appList.get(position).appIntent;
+		if (appIntent != null) {
+			startActivity(appIntent);
+		} else {
+			Toast toast = Toast.makeText(getActivity(),"Intent is null", Toast.LENGTH_SHORT);
+			toast.show();
+		}
 	}
 	
 	/**
